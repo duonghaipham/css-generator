@@ -1,7 +1,8 @@
-header {
+h1 {
   margin: 0 0 1.5rem;
   padding: 0.5rem 0;
   background-color: #eee;
+  font-size: 2rem;
   text-align: center;
 }
 
@@ -13,14 +14,13 @@ header {
   width: 80%;
   margin: 0 auto;
   font-size: 1rem;
-  list-style-type: none;
 
   .option {
     padding: 1.25rem 0;
     background-color: #2dc36a;
     color: #fff;
     text-align: center;
-    cursor: pointer;
+    text-decoration: none;
 
     &:hover {
       transform: scale(1.05);

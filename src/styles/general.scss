@@ -1,0 +1,150 @@
+@mixin range-slider-attr {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #2dc36a;
+  cursor: pointer;
+}
+
+.range-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #d3d3d3;
+  outline: none;
+  opacity: 0.75;
+  -webkit-transition: 0.2ms;
+  transition: opacity 0.2ms;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    @include range-slider-attr;
+  }
+
+  &::-moz-range-thumb {
+    @include range-slider-attr;
+  }
+}
+
+.switch-slider {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+
+  .checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+
+    &::before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 22px;
+      left: 5px;
+      bottom: 5px;
+      background-color: white;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+    }
+  }
+
+  .checkbox:checked + .slider {
+    background-color: #2dc36a;
+  }
+
+  .checkbox:checked + .slider:before {
+    transform: translateX(25px);
+  }
+}
+
+.function-container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+
+  .custom-container {
+    width: 30%;
+
+    .header {
+      padding: 0.5rem 0;
+      background-color: #2dc36a;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .custom-list {
+      border: 1px #ccc solid;
+      padding: 1rem;
+      list-style-type: none;
+
+      .custom-item {
+        margin-bottom: 0.5rem;
+
+        .meta {
+          display: flex;
+          justify-content: space-between;
+
+          label {
+            font-size: 1rem;
+          }
+
+          .value {
+            color: #2dc36a;
+            font-size: 1rem;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  .result-container {
+    width: 60%;
+
+    .preview {
+      .test-box {
+        width: 300px;
+        height: 200px;
+        background-color: #2dc36a;
+      }
+    }
+
+    .output-text {
+
+    }
+  }
+
+}
+
+@media (max-width: 960px) {
+  .function-container {
+    flex-direction: column;
+
+    .custom-container {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+}
