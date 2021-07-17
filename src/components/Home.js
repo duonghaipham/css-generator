@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <main id='list-options'>
       <Link to='/box-shadow' className='option'>Box Shadow</Link>
-      <section className='option'>Text Shadow</section>
+      <Link to='/text-shadow' className='option'>Text Shadow</Link>
       <section className='option'>Gradient</section>
       <section className='option'>CSS Cursor</section>
       <section className='option'>Border</section>

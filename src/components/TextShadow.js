@@ -1,15 +1,13 @@
-import {useRef, useState} from 'react';
 import '../styles/general.scss';
-import {rgbToHex, hexToRgb} from './color';
+import {hexToRgb, rgbToHex} from "./color";
+import {useRef, useState} from "react";
 
-const BoxShadow = () => {
-  const [horizontalLength, setHorizontalLength] = useState(10);
-  const [verticalLength, setVerticalLength] = useState(10);
-  const [blurRadius, setBlurRadius] = useState(5);
-  const [spreadRadius, setSpreadRadius] = useState(0);
+const TextShadow = () => {
+  const [horizontalLength, setHorizontalLength] = useState(4);
+  const [verticalLength, setVerticalLength] = useState(4);
+  const [blurRadius, setBlurRadius] = useState(2);
   const [color, setColor] = useState({r: 0, g: 0, b: 0});
-  const [colorOpacity, setColorOpacity] = useState(0.5);
-  const [inset, setInset] = useState('');
+  const [colorOpacity, setColorOpacity] = useState(0.6);
   const [copied, setCopied] = useState(false);
 
   const colorText = useRef();
@@ -27,11 +25,6 @@ const BoxShadow = () => {
 
   const handleBlurRadiusChange = event => {
     setBlurRadius(event.target.value);
-    setCopied(false);
-  }
-
-  const handleSpreadRadiusChange = event => {
-    setSpreadRadius(event.target.value);
     setCopied(false);
   }
 
@@ -55,53 +48,38 @@ const BoxShadow = () => {
     colorText.current.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
   }
 
-  const handleInsetChange = event => {
-    if (event.target.checked)
-      setInset(' inset');
-    else
-      setInset('');
-    setCopied(false);
-  }
-
   const handleCopyClick = () => {
     navigator.clipboard.writeText(outputText.current.innerText);
     setCopied(true);
   }
 
-  const value = `${horizontalLength}px ${verticalLength}px ${blurRadius}px ${spreadRadius}px rgba(${color.r}, ${color.g}, ${color.b}, ${colorOpacity})${inset}`;
+  const value = `${horizontalLength}px ${verticalLength}px ${blurRadius}px rgba(${color.r}, ${color.g}, ${color.b}, ${colorOpacity})`;
 
   return (
-    <div className='function-container'>
-      <div className='custom-container'>
-        <h3 className='header'>Box shadow options</h3>
-        <ul className='custom-list'>
-          <li className='custom-item'>
-            <div className='meta'>
+    <div className="function-container">
+      <div className="custom-container">
+        <h3 className="header">Text shadow options</h3>
+        <ul className="custom-list">
+          <li className="custom-item">
+            <div className="meta">
               <label>Horizontal shadow length</label>
-              <span className='value'>{horizontalLength}px</span>
+              <span className="value">{horizontalLength}px</span>
             </div>
-            <input type='range' min='-200' max='200' defaultValue='10' className='range-slider' onChange={handleHorizontalLengthChange} />
+            <input type='range' min='-200' max='200' defaultValue='4' className='range-slider' onChange={handleHorizontalLengthChange} />
           </li>
           <li className='custom-item'>
             <div className='meta'>
               <label>Vertical shadow length</label>
               <span className='value'>{verticalLength}px</span>
             </div>
-            <input type='range' min='-200' max='200' defaultValue='10' className='range-slider' onChange={handleVerticalLengthChange} />
+            <input type='range' min='-200' max='200' defaultValue='4' className='range-slider' onChange={handleVerticalLengthChange} />
           </li>
           <li className='custom-item'>
             <div className='meta'>
               <label>Blur radius</label>
               <span className='value'>{blurRadius}px</span>
             </div>
-            <input type='range' min='0' max='400' defaultValue='5' className='range-slider' onChange={handleBlurRadiusChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Spread radius</label>
-              <span className='value'>{spreadRadius}px</span>
-            </div>
-            <input type='range' min='-200' max='200' defaultValue='0' className='range-slider' onChange={handleSpreadRadiusChange} />
+            <input type='range' min='0' max='50' defaultValue='2' className='range-slider' onChange={handleBlurRadiusChange} />
           </li>
           <li className='custom-item'>
             <div className='meta'>
@@ -119,32 +97,19 @@ const BoxShadow = () => {
             </div>
             <input type='range' min='0' max='1' step='0.01' defaultValue='0.5' className='range-slider' onChange={handleColorOpacityChange} />
           </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Inset</label>
-            </div>
-            <label className='switch-slider'>
-              <input type='checkbox' onChange={handleInsetChange} className='checkbox'/>
-              <span className='slider' />
-            </label>
-          </li>
         </ul>
       </div>
       <div className='result-container'>
         <div className='preview'>
-          <div className='test-box' style={{ boxShadow: value }} />
+          <p className='test-text' style={{ textShadow: value }}>The quick brown fox jumps over the lazy dog</p>
         </div>
         <div className='output'>
-          <p className='text' ref={outputText}>
-            box-shadow: {value};<br />
-            -webkit-box-shadow: {value};<br />
-            -moz-box-shadow: {value};
-          </p>
+          <p className='text' ref={outputText}>text-shadow: {value};</p>
           <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default BoxShadow;
+export default TextShadow;
