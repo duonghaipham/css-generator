@@ -6,6 +6,7 @@
   cursor: pointer;
 }
 
+// Range slider input
 .range-slider {
   -webkit-appearance: none;
   width: 100%;
@@ -32,9 +33,11 @@
   }
 }
 
+// Switch slider input
 .switch-slider {
   position: relative;
   display: inline-block;
+  margin-top: 0.5rem;
   width: 60px;
   height: 30px;
 
@@ -76,6 +79,35 @@
   }
 }
 
+// Color picker input
+.color-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 0.5rem;
+  border: 1px #ccc solid;
+
+  .color-text {
+    border-style: none;
+    padding: 7px 10px;
+    outline: none;
+    width: 150px;
+    font-size: 16px;
+  }
+
+  .color-chooser {
+    width: 20px;
+    height: 20px;
+    margin-right: 7px;
+    border-style: none;
+
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+  }
+}
+
 .function-container {
   display: flex;
   justify-content: space-between;
@@ -83,13 +115,12 @@
   margin: 0 auto;
 
   .custom-container {
-    width: 30%;
+    width: 35%;
 
     .header {
       padding: 0.5rem 0;
       background-color: #2dc36a;
       color: #fff;
-      font-size: 1.1rem;
       font-weight: 500;
       text-align: center;
     }
@@ -100,19 +131,23 @@
       list-style-type: none;
 
       .custom-item {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
 
         .meta {
           display: flex;
           justify-content: space-between;
 
           label {
-            font-size: 1rem;
+            font-size: 0.9rem;
           }
 
           .value {
             color: #2dc36a;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
           }
         }
@@ -121,6 +156,10 @@
   }
 
   .result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     width: 60%;
 
     .preview {
@@ -131,11 +170,32 @@
       }
     }
 
-    .output-text {
+    .output {
+      width: 100%;
 
+      .text {
+        width: 90%;
+        margin: 0 auto 0.75rem;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        background-color: #eee;
+        font-family: Consolas, sans-serif;
+        font-size: 0.9rem;
+      }
+
+      .copy {
+        display: block;
+        margin: 0 auto;
+        border-style: none;
+        border-radius: 5px;
+        padding: 0.5rem 0.75rem;
+        background-color: #2dc36a;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+      }
     }
   }
-
 }
 
 @media (max-width: 960px) {
@@ -143,8 +203,23 @@
     flex-direction: column;
 
     .custom-container {
-      width: 90%;
+      width: 95%;
+      margin: 0 auto 1.5rem;
+    }
+
+    .result-container {
+      width: 95%;
       margin: 0 auto;
+
+      .preview {
+        margin-bottom: 1.5rem;
+      }
+
+      .output {
+        .text {
+          width: 100%;
+        }
+      }
     }
   }
 }

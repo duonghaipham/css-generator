@@ -1,43 +1,74 @@
+import {useRef, useState} from 'react';
 import '../styles/general.scss';
-import '../styles/box-shadow.scss';
-import {useState} from 'react';
+import {rgbToHex, hexToRgb} from './color';
 
 const BoxShadow = () => {
   const [horizontalLength, setHorizontalLength] = useState(10);
   const [verticalLength, setVerticalLength] = useState(10);
   const [blurRadius, setBlurRadius] = useState(5);
   const [spreadRadius, setSpreadRadius] = useState(0);
+  const [color, setColor] = useState({r: 0, g: 0, b: 0});
   const [colorOpacity, setColorOpacity] = useState(0.5);
   const [inset, setInset] = useState('');
+  const [copied, setCopied] = useState(false);
 
-  const handleHorizontalLengthChange = (event) => {
+  const colorText = useRef();
+  const outputText = useRef();
+
+  const handleHorizontalLengthChange = event => {
     setHorizontalLength(event.target.value);
+    setCopied(false);
   }
 
-  const handleVerticalLengthChange = (event) => {
+  const handleVerticalLengthChange = event => {
     setVerticalLength(event.target.value);
+    setCopied(false);
   }
 
-  const handleBlurRadiusChange = (event) => {
+  const handleBlurRadiusChange = event => {
     setBlurRadius(event.target.value);
+    setCopied(false);
   }
 
-  const handleSpreadRadiusChange = (event) => {
+  const handleSpreadRadiusChange = event => {
     setSpreadRadius(event.target.value);
+    setCopied(false);
   }
 
-  const handleColorOpacityChange = (event) => {
+  const handleColorOpacityChange = event => {
     setColorOpacity(event.target.value);
+    setCopied(false);
   }
 
-  const handleInsetChange = (event) => {
+  const handleColorTextChange = event => {
+    const rgb = event.target.value.match(/[0-9]+/g);
+    if (rgb !== null && rgb.length === 3) {
+      setColor({r: parseInt(rgb[0]), g: parseInt(rgb[1]), b: parseInt(rgb[2])});
+      setCopied(false);
+    }
+  }
+
+  const handleColorChooserChange = event => {
+    const rgb = hexToRgb(event.target.value);
+    setColor(rgb);
+    setCopied(false);
+    colorText.current.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+  }
+
+  const handleInsetChange = event => {
     if (event.target.checked)
       setInset(' inset');
     else
       setInset('');
+    setCopied(false);
   }
 
-  const value = `${horizontalLength}px ${verticalLength}px ${blurRadius}px ${spreadRadius}px rgba(0, 0, 0, ${colorOpacity})${inset}`;
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(outputText.current.innerText);
+    setCopied(true);
+  }
+
+  const value = `${horizontalLength}px ${verticalLength}px ${blurRadius}px ${spreadRadius}px rgba(${color.r}, ${color.g}, ${color.b}, ${colorOpacity})${inset}`;
 
   return (
     <div className='function-container'>
@@ -74,6 +105,15 @@ const BoxShadow = () => {
           </li>
           <li className='custom-item'>
             <div className='meta'>
+              <label>Shadow color</label>
+            </div>
+            <div className='color-picker'>
+              <input type='text' className='color-text' ref={colorText} defaultValue='rgb(0, 0, 0)' onChange={handleColorTextChange} />
+              <input type='color' className='color-chooser' value={rgbToHex(color.r, color.g, color.b)} onChange={handleColorChooserChange} />
+            </div>
+          </li>
+          <li className='custom-item'>
+            <div className='meta'>
               <label>Shadow color opacity</label>
               <span className='value'>{colorOpacity}</span>
             </div>
@@ -82,7 +122,6 @@ const BoxShadow = () => {
           <li className='custom-item'>
             <div className='meta'>
               <label>Inset</label>
-              <span className='value'>{colorOpacity}</span>
             </div>
             <label className='switch-slider'>
               <input type='checkbox' onChange={handleInsetChange} className='checkbox'/>
@@ -93,15 +132,14 @@ const BoxShadow = () => {
       </div>
       <div className='result-container'>
         <div className='preview'>
-          <div
-            className='test-box'
-            style={{ boxShadow: value }}/>
+          <div className='test-box' style={{ boxShadow: value }} />
         </div>
         <div className='output'>
-          <p className='text'>box-shadow: {value};</p>
-          <p className='text'>-webkit-box-shadow: {value};</p>
-          <p className='text'>-moz-box-shadow: {value};</p>
-          <button>Copy</button>
+          <p className='text' ref={outputText}>
+            box-shadow: {value};<br />
+            -webkit-box-shadow: {value};<br />
+            -moz-box-shadow: {value};
+          </p>          <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
         </div>
       </div>
     </div>

@@ -4,12 +4,13 @@ import BoxShadow from './components/BoxShadow';
 
 const App = () => {
   return (
-    <main>
+    <>
+      <h1>CSS GEnerator Tool</h1>
       <Switch>
         <Route path='/' component={Home} exact />
         <Route path='/box-shadow' component={BoxShadow} />
       </Switch>
-    </main>
+    </>
   );
 }
 
