@@ -10,7 +10,7 @@ const Home = () => {
       <Link to='/cursor' className='option'>CSS Cursor</Link>
       <section className='option'>Border</section>
       <Link to='/border-radius' className='option'>Border Radius</Link>
-      <section className='option'>Transform</section>
+      <Link to='/transform' className='option'>Transform</Link>
       <section className='option'>RGBA & Hex Color</section>
       <section className='option'>Filter</section>
       <section className='option'>Multiple Columns</section>

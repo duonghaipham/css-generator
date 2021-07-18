@@ -38,6 +38,7 @@ const BorderRadius = () => {
     setTopRightRadius(event.target.value);
     setCopied(false);
   }
+
   const handleBottomRightRadiusChange = event => {
     setBottomRightRadius(event.target.value);
     setCopied(false);
