@@ -136,9 +136,9 @@ const BoxShadow = () => {
         </div>
         <div className='output'>
           <p className='text' ref={outputText}>
-            box-shadow: {value};<br />
-            -webkit-box-shadow: {value};<br />
-            -moz-box-shadow: {value};
+            box-shadow: ${value};<br />
+            -webkit-box-shadow: ${value};<br />
+            -moz-box-shadow: ${value};<br />
           </p>
           <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
         </div>

@@ -127,14 +127,19 @@
 
     .custom-list {
       border: 1px #ccc solid;
-      padding: 1rem;
+      padding: 0.75rem;
       list-style-type: none;
 
       .custom-item {
-        margin-bottom: 0.75rem;
+        $border-cursor: 1px #ccc solid;
+        border-top: $border-cursor;
+        border-left: $border-cursor;
+        border-right: $border-cursor;
+        padding: 0.25rem 1rem;
 
         &:last-child {
           margin-bottom: 0;
+          border-bottom: $border-cursor;
         }
 
         .meta {
@@ -150,6 +155,13 @@
             font-size: 0.9rem;
             font-weight: 600;
           }
+        }
+      }
+
+      .cursor {
+        &:hover {
+          background-color: #2dc36a;
+          color: #fff;
         }
       }
     }
@@ -198,6 +210,7 @@
         color: #fff;
         cursor: pointer;
         font-size: 1rem;
+        outline: none;
       }
     }
   }

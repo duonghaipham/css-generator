@@ -7,7 +7,7 @@ const Home = () => {
       <Link to='/box-shadow' className='option'>Box Shadow</Link>
       <Link to='/text-shadow' className='option'>Text Shadow</Link>
       <section className='option'>Gradient</section>
-      <section className='option'>CSS Cursor</section>
+      <Link to='/cursor' className='option'>CSS Cursor</Link>
       <section className='option'>Border</section>
       <section className='option'>Border Radius</section>
       <section className='option'>Transform</section>
