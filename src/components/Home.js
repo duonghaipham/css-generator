@@ -9,7 +9,7 @@ const Home = () => {
       <section className='option'>Gradient</section>
       <Link to='/cursor' className='option'>CSS Cursor</Link>
       <section className='option'>Border</section>
-      <section className='option'>Border Radius</section>
+      <Link to='/border-radius' className='option'>Border Radius</Link>
       <section className='option'>Transform</section>
       <section className='option'>RGBA & Hex Color</section>
       <section className='option'>Filter</section>

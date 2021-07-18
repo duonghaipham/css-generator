@@ -37,7 +37,6 @@
 .switch-slider {
   position: relative;
   display: inline-block;
-  margin-top: 0.5rem;
   width: 60px;
   height: 30px;
 
@@ -85,7 +84,6 @@
   display: flex;
   align-items: center;
   width: fit-content;
-  margin-top: 0.5rem;
   border: 1px #ccc solid;
 
   .color-text {
@@ -106,6 +104,15 @@
       padding: 0;
     }
   }
+}
+
+// Combobox
+.combobox {
+  border: 1px solid #ccc;
+  padding: 7px 10px;
+  background: none;
+  font-size: 16px;
+  outline: none;
 }
 
 .function-container {
@@ -129,6 +136,13 @@
       border: 1px #ccc solid;
       padding: 0.75rem;
       list-style-type: none;
+
+      .item-inline {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
 
       .custom-item {
         $border-cursor: 1px #ccc solid;
@@ -176,9 +190,17 @@
 
     .preview {
       .test-box {
+        background-color: #2dc36a;
+      }
+
+      .test-box-1 {
         width: 300px;
         height: 200px;
-        background-color: #2dc36a;
+      }
+
+      .test-box-2 {
+        width: 300px;
+        height: 300px;
       }
 
       .test-text {

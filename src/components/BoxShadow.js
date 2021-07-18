@@ -103,7 +103,7 @@ const BoxShadow = () => {
             </div>
             <input type='range' min='-200' max='200' defaultValue='0' className='range-slider' onChange={handleSpreadRadiusChange} />
           </li>
-          <li className='custom-item'>
+          <li className='custom-item item-inline'>
             <div className='meta'>
               <label>Shadow color</label>
             </div>
@@ -119,7 +119,7 @@ const BoxShadow = () => {
             </div>
             <input type='range' min='0' max='1' step='0.01' defaultValue='0.5' className='range-slider' onChange={handleColorOpacityChange} />
           </li>
-          <li className='custom-item'>
+          <li className='custom-item item-inline'>
             <div className='meta'>
               <label>Inset</label>
             </div>
@@ -132,7 +132,7 @@ const BoxShadow = () => {
       </div>
       <div className='result-container'>
         <div className='preview'>
-          <div className='test-box' style={{ boxShadow: value }} />
+          <div className='test-box test-box-1' style={{ boxShadow: value }} />
         </div>
         <div className='output'>
           <p className='text' ref={outputText}>

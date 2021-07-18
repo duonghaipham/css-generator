@@ -81,7 +81,7 @@ const TextShadow = () => {
             </div>
             <input type='range' min='0' max='50' defaultValue='2' className='range-slider' onChange={handleBlurRadiusChange} />
           </li>
-          <li className='custom-item'>
+          <li className='custom-item item-inline'>
             <div className='meta'>
               <label>Shadow color</label>
             </div>
