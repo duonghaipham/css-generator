@@ -1,6 +1,5 @@
 import '../styles/general.scss';
-import {rgbToHex} from "./color";
-import {useRef, useState} from "react";
+import {useRef, useState} from 'react';
 
 const Transform = () => {
   const [rotate, setRotate] = useState('0');

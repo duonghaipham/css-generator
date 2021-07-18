@@ -5,6 +5,7 @@ import TextShadow from './components/TextShadow';
 import Cursor from './components/Cursor';
 import BorderRadius from './components/BorderRadius';
 import Transform from './components/Transform';
+import Filter from './components/Filter';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='/cursor' component={Cursor} />
         <Route path='/border-radius' component={BorderRadius} />
         <Route path='/transform' component={Transform} />
+        <Route path='/filter' component={Filter} />
       </Switch>
     </>
   );

@@ -170,6 +170,18 @@
             font-weight: 600;
           }
         }
+
+        .special-header {
+          font-weight: 500;
+        }
+
+        .special-container {
+          list-style-type: none;
+
+          .special-item {
+            margin: 0.4rem 0;
+          }
+        }
       }
 
       .cursor {
