@@ -1,5 +1,5 @@
 import '../styles/home.scss';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -11,9 +11,9 @@ const Home = () => {
       <section className='option'>Border</section>
       <Link to='/border-radius' className='option'>Border Radius</Link>
       <Link to='/transform' className='option'>Transform</Link>
-      <section className='option'>RGBA & Hex Color</section>
+      <Link to='/color-converter' className='option'>RGBA & Hex Color</Link>
       <Link to='/filter' className='option'>Filter</Link>
-      <Link to='multiple-columns' className='option'>Multiple Columns</Link>
+      <Link to='/multiple-columns' className='option'>Multiple Columns</Link>
     </main>
   );
 };

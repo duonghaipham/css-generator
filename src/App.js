@@ -5,8 +5,9 @@ import TextShadow from './components/TextShadow';
 import Cursor from './components/Cursor';
 import BorderRadius from './components/BorderRadius';
 import Transform from './components/Transform';
-import Filter from './components/Filter';
+import ColorConverter from './components/ColorConverter';
 import MultipleColumns from './components/MultipleColumns';
+import Filter from './components/Filter';
 
 const App = () => {
   return (
@@ -19,8 +20,9 @@ const App = () => {
         <Route path='/cursor' component={Cursor} />
         <Route path='/border-radius' component={BorderRadius} />
         <Route path='/transform' component={Transform} />
-        <Route path='/filter' component={Filter} />
+        <Route path='/color-converter' component={ColorConverter} />
         <Route path='/multiple-columns' component={MultipleColumns} />
+        <Route path='/filter' component={Filter} />
       </Switch>
     </>
   );
