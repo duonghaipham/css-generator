@@ -6,6 +6,7 @@ import Cursor from './components/Cursor';
 import BorderRadius from './components/BorderRadius';
 import Transform from './components/Transform';
 import Filter from './components/Filter';
+import MultipleColumns from './components/MultipleColumns';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/border-radius' component={BorderRadius} />
         <Route path='/transform' component={Transform} />
         <Route path='/filter' component={Filter} />
+        <Route path='/multiple-columns' component={MultipleColumns} />
       </Switch>
     </>
   );

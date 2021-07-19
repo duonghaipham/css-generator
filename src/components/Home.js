@@ -13,7 +13,7 @@ const Home = () => {
       <Link to='/transform' className='option'>Transform</Link>
       <section className='option'>RGBA & Hex Color</section>
       <Link to='/filter' className='option'>Filter</Link>
-      <section className='option'>Multiple Columns</section>
+      <Link to='multiple-columns' className='option'>Multiple Columns</Link>
     </main>
   );
 };
