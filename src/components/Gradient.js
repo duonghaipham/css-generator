@@ -1,5 +1,4 @@
-import {useRef, useState} from 'react';
-import {hexToRgb, rgbToHex} from './color';
+import {useEffect, useRef, useState} from 'react';
 
 const Gradient = () => {
   const [orientation, setOrientation] = useState('linear');
@@ -10,10 +9,11 @@ const Gradient = () => {
   const [copied, setCopied] = useState(false);
 
   const colorsText = useRef([]);
+  const percentagesText = useRef([]);
   const outputText = useRef();
 
-  const listOrientations = ['linear', 'radical', 'elliptical', 'repeat linear', 'repeat radical', 'repeat elliptical'];
-  const listSizes = ['farthest-corner', 'farthest-size'];
+  const listOrientations = ['linear', 'radial', 'elliptical', 'repeating linear', 'repeating radial', 'repeating elliptical'];
+  const listSizes = ['farthest-corner', 'farthest-side'];
   const listPositions = ['top left', 'top center', 'top right', 'left center', 'center center', 'right center', 'bottom left', 'bottom center', 'bottom right'];
 
   const handleOrientationChange = event => {
@@ -81,8 +81,21 @@ const Gradient = () => {
     setCopied(true);
   }
 
+  useEffect(() => {
+    const color = colors[colors.length - 2];
+    colorsText.current[colors.length - 2].value = color.col;
+    percentagesText.current[colors.length - 2].value = color.per;
+  }, [colors])
+
   const createValue = () => {
-    let value = `${orientation}-gradient(${degree}deg`;
+    let value = ''
+    if (orientation.includes('linear'))
+      value = `${orientation.replace(' ', '-')}-gradient(${degree}deg`;
+    else {
+      value = `${orientation.replace(' ', '-').replace('elliptical', 'radial')}-gradient(`;
+      value += (orientation === 'radial') ? 'circle' : 'ellipse';
+      value += ` ${size} at ${position}`;
+    }
     colors.forEach((color) => {
       value += `, ${color.col} ${color.per}%`;
     });
@@ -120,14 +133,14 @@ const Gradient = () => {
                   <label>Size</label>
                 </div>
                 <select className='combobox' onChange={handleSizeChange}>
-                  {listSizes.map(size => <option>{size}</option>)}
+                  {listSizes.map(currentSize => <option>{currentSize}</option>)}
                 </select>
               </li>
               <li className='custom-item item-inline'>
                 <div className='meta'>
                   <label>Position</label>
                 </div>
-                <select className='combobox' onChange={handlePositionChange}>
+                <select className='combobox' defaultValue='center center' onChange={handlePositionChange}>
                   {listPositions.map(position => <option>{position}</option>)}
                 </select>
               </li>
@@ -136,20 +149,22 @@ const Gradient = () => {
               <li className='custom-item item-inline'>
                 <div className='meta'>
                   <label>{(index === 0) ? 'Start color' : (index === colors.length - 1) ? 'End color' : 'Stop color'}</label>
-                  {(index !== 0 && index !== colors.length - 1) ? <span onClick={() => handleRemoveColorClick(index)}>&#10006;</span> : ''}
+                  {(index !== 0 && index !== colors.length - 1) ? <span className='remove' onClick={() => handleRemoveColorClick(index)}>&#10006;</span> : ''}
                 </div>
-                <div className='color-picker'>
-                  <input type='text' className='color-text' ref={element => colorsText.current[index] = element}
-                         defaultValue={color.col} onChange={event => handleColorTextChange(event, index)} />
-                  <input type='color' className='color-chooser' value={color.col}
-                         onChange={event => handleColorChooserChange(event, index)} />
+                <div className='color-value'>
+                  <div className='color-picker'>
+                    <input type='text' className='color-text' ref={element => colorsText.current[index] = element}
+                           defaultValue={color.col} onChange={event => handleColorTextChange(event, index)} />
+                    <input type='color' className='color-chooser' value={color.col}
+                           onChange={event => handleColorChooserChange(event, index)} />
+                  </div>
+                  <input type='text' className='color-percentage' ref={element => percentagesText.current[index] = element}
+                         defaultValue={color.per} onChange={event => handleColorPercentageChange(event, index)} />
                 </div>
-                <input type='text' className='color-percentage' defaultValue={color.per}
-                       onChange={event => handleColorPercentageChange(event, index)} />
               </li>
           )}
-          <li className='custom-item'>
-            <button onClick={handleAddColorClick}>Add stop color</button>
+          <li className='custom-item item-inline'>
+            <button type='button' onClick={handleAddColorClick}>Add stop color</button>
           </li>
         </ul>
       </div>
