@@ -1,12 +1,12 @@
 h1 {
-  margin: 0 0 1.5rem;
+  margin-bottom: 0.5rem;
   padding: 0.5rem 0;
   background-color: #eee;
   font-size: 2rem;
   text-align: center;
 }
 
-#list-options {
+.list-options {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);

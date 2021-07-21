@@ -1,4 +1,6 @@
 import {useRef, useState} from "react";
+import Navbar from "./Navbar";
+import '../styles/general.scss';
 
 const Cursor = () => {
   const [cursor, setCursor] = useState('default');
@@ -22,20 +24,23 @@ const Cursor = () => {
   }
 
   return (
-    <div className='function-container' ref={cursorRange}>
-      <div className='custom-container'>
-        <h3 className='header'>Cursor options (PC recommended)</h3>
-        <ul className='custom-list'>
-          {listItems.map((item) => <li className='custom-item cursor' onMouseEnter={event => handleItemHover(event,item)}>{item}</li>)}
-        </ul>
-      </div>
-      <div className='result-container'>
-        <div className='output'>
-          <p className='text' ref={outputText}>cursor: {cursor};</p>
-          <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+    <>
+      <Navbar classObject={{parent: 'menu', children: 'option'}} />
+      <div className='function-container' ref={cursorRange}>
+        <div className='custom-container'>
+          <h3 className='header'>Cursor options (PC recommended)</h3>
+          <ul className='custom-list'>
+            {listItems.map((item) => <li className='custom-item cursor' onMouseEnter={event => handleItemHover(event,item)}>{item}</li>)}
+          </ul>
+        </div>
+        <div className='result-container'>
+          <div className='output'>
+            <p className='text' ref={outputText}>cursor: {cursor};</p>
+            <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

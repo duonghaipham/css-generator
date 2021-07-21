@@ -1,5 +1,7 @@
-import {hexToRgb, rgbToHex} from './color';
 import {useRef, useState} from 'react';
+import Navbar from "./Navbar";
+import {hexToRgb, rgbToHex} from './color';
+import '../styles/general.scss';
 
 const BorderRadius = () => {
   const [allCornersRadius, setAllCornersRadius] = useState('10');
@@ -116,101 +118,104 @@ const BorderRadius = () => {
   }
 
   return (
-    <div className="function-container">
-      <div className="custom-container">
-        <h3 className="header">Border radius options</h3>
-        <ul className="custom-list">
-          <li className="custom-item">
-            <div className="meta">
-              <label>All corners radius</label>
-              <span className="value">{allCornersRadius}px</span>
-            </div>
-            <input type='range' min='0' max='200' defaultValue='10' className='range-slider' onChange={handleAllCornersChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Top-left radius</label>
-              <span className='value'>{topLeftRadius}px</span>
-            </div>
-            <input type='range' min='0' max='200' value={topLeftRadius} className='range-slider' onChange={handleTopLeftRadiusChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Top right radius</label>
-              <span className='value'>{topRightRadius}px</span>
-            </div>
-            <input type='range' min='0' max='200' value={topRightRadius} className='range-slider' onChange={handleTopRightRadiusChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Bottom right radius</label>
-              <span className='value'>{bottomRightRadius}px</span>
-            </div>
-            <input type='range' min='0' max='200' value={bottomRightRadius} className='range-slider' onChange={handleBottomRightRadiusChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Bottom left radius</label>
-              <span className='value'>{bottomLeftRadius}px</span>
-            </div>
-            <input type='range' min='0' max='200' value={bottomLeftRadius} className='range-slider' onChange={handleBottomLeftRadiusChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Border width</label>
-              <span className='value'>{borderWidth}px</span>
-            </div>
-            <input type='range' min='0' max='200' defaultValue='0' className='range-slider' onChange={handleBorderWidthChange} />
-          </li>
-          <li className='custom-item item-inline'>
-            <div className='meta'>
-              <label>Border color</label>
-            </div>
-            <div className='color-picker'>
-              <input type='text' className='color-text' ref={borderColorText} defaultValue='rgb(125, 0, 125)' onChange={handleBorderColorTextChange} />
-              <input type='color' className='color-chooser' value={rgbToHex(borderColor.r, borderColor.g, borderColor.b)} onChange={handleBorderColorChooserChange} />
-            </div>
-          </li>
-          <li className='custom-item item-inline'>
-            <div className='meta'>
-              <label>Border style</label>
-            </div>
-            <select className='combobox' onChange={handleBorderStyleChange}>
-              {listStyles.map(style => <option>{style}</option>)}
-            </select>
-          </li>
-          <li className='custom-item item-inline'>
-            <div className='meta'>
-              <label>Background color</label>
-            </div>
-            <div className='color-picker'>
-              <input type='text' className='color-text' ref={backgroundColorText} defaultValue='rgb(45, 195, 106)' onChange={handleBackgroundColorTextChange} />
-              <input type='color' className='color-chooser' value={rgbToHex(backgroundColor.r, backgroundColor.g, backgroundColor.b)} onChange={handleBackgroundColorChooserChange} />
-            </div>
-          </li>
-          <li className='custom-item item-inline'>
-            <div className='meta'>
-              <label>Include background</label>
-            </div>
-            <label className='switch-slider'>
-              <input type='checkbox' onChange={handleIncludeBackgroundChange} className='checkbox'/>
-              <span className='slider' />
-            </label>
-          </li>
-        </ul>
-      </div>
-      <div className='result-container'>
-        <div className='preview'>
-          <div className='test-box test-box-2' style={{ borderRadius: borderRadiusValue, border: borderValue, background: backgroundValue }} />
+    <>
+      <Navbar classObject={{parent: 'menu', children: 'option'}} />
+      <div className="function-container">
+        <div className="custom-container">
+          <h3 className="header">Border radius options</h3>
+          <ul className="custom-list">
+            <li className="custom-item">
+              <div className="meta">
+                <label>All corners radius</label>
+                <span className="value">{allCornersRadius}px</span>
+              </div>
+              <input type='range' min='0' max='200' defaultValue='10' className='range-slider' onChange={handleAllCornersChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Top-left radius</label>
+                <span className='value'>{topLeftRadius}px</span>
+              </div>
+              <input type='range' min='0' max='200' value={topLeftRadius} className='range-slider' onChange={handleTopLeftRadiusChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Top right radius</label>
+                <span className='value'>{topRightRadius}px</span>
+              </div>
+              <input type='range' min='0' max='200' value={topRightRadius} className='range-slider' onChange={handleTopRightRadiusChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Bottom right radius</label>
+                <span className='value'>{bottomRightRadius}px</span>
+              </div>
+              <input type='range' min='0' max='200' value={bottomRightRadius} className='range-slider' onChange={handleBottomRightRadiusChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Bottom left radius</label>
+                <span className='value'>{bottomLeftRadius}px</span>
+              </div>
+              <input type='range' min='0' max='200' value={bottomLeftRadius} className='range-slider' onChange={handleBottomLeftRadiusChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Border width</label>
+                <span className='value'>{borderWidth}px</span>
+              </div>
+              <input type='range' min='0' max='200' defaultValue='0' className='range-slider' onChange={handleBorderWidthChange} />
+            </li>
+            <li className='custom-item item-inline'>
+              <div className='meta'>
+                <label>Border color</label>
+              </div>
+              <div className='color-picker'>
+                <input type='text' className='color-text' ref={borderColorText} defaultValue='rgb(125, 0, 125)' onChange={handleBorderColorTextChange} />
+                <input type='color' className='color-chooser' value={rgbToHex(borderColor.r, borderColor.g, borderColor.b)} onChange={handleBorderColorChooserChange} />
+              </div>
+            </li>
+            <li className='custom-item item-inline'>
+              <div className='meta'>
+                <label>Border style</label>
+              </div>
+              <select className='combobox' onChange={handleBorderStyleChange}>
+                {listStyles.map(style => <option>{style}</option>)}
+              </select>
+            </li>
+            <li className='custom-item item-inline'>
+              <div className='meta'>
+                <label>Background color</label>
+              </div>
+              <div className='color-picker'>
+                <input type='text' className='color-text' ref={backgroundColorText} defaultValue='rgb(45, 195, 106)' onChange={handleBackgroundColorTextChange} />
+                <input type='color' className='color-chooser' value={rgbToHex(backgroundColor.r, backgroundColor.g, backgroundColor.b)} onChange={handleBackgroundColorChooserChange} />
+              </div>
+            </li>
+            <li className='custom-item item-inline'>
+              <div className='meta'>
+                <label>Include background</label>
+              </div>
+              <label className='switch-slider'>
+                <input type='checkbox' onChange={handleIncludeBackgroundChange} className='checkbox'/>
+                <span className='slider' />
+              </label>
+            </li>
+          </ul>
         </div>
-        <div className='output'>
-          <p className='text' ref={outputText}>
-            {createOutputArr().map(item => item)}
-          </p>
-          <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+        <div className='result-container'>
+          <div className='preview'>
+            <div className='test-box test-box-2' style={{ borderRadius: borderRadiusValue, border: borderValue, background: backgroundValue }} />
+          </div>
+          <div className='output'>
+            <p className='text' ref={outputText}>
+              {createOutputArr().map(item => item)}
+            </p>
+            <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

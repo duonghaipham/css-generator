@@ -1,5 +1,6 @@
-import '../styles/general.scss';
+import Navbar from './Navbar';
 import {useRef, useState} from 'react';
+import '../styles/general.scss';
 
 const Transform = () => {
   const [rotate, setRotate] = useState('0');
@@ -54,61 +55,64 @@ const Transform = () => {
   const value = createValue();
 
   return (
-    <div className="function-container">
-      <div className="custom-container">
-        <h3 className="header">Transform options</h3>
-        <ul className="custom-list">
-          <li className="custom-item">
-            <div className="meta">
-              <label>Rotate</label>
-              <span className="value">{rotate}&deg;</span>
-            </div>
-            <input type='range' min='0' max='360' defaultValue='0' className='range-slider' onChange={handleRotateChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Scale</label>
-              <span className='value'>{scale}</span>
-            </div>
-            <input type='range' min='0' max='2' step='0.1' defaultValue='1' className='range-slider' onChange={handleScaleChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Skew</label>
-              <span className='value'>{skew}&deg;</span>
-            </div>
-            <input type='range' min='-180' max='180' defaultValue='0' className='range-slider' onChange={handleSkewChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Translate X</label>
-              <span className='value'>{translateX}px</span>
-            </div>
-            <input type='range' min='-200' max='200' defaultValue='0' className='range-slider' onChange={handleTranslateXChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Translate Y</label>
-              <span className='value'>{translateY}px</span>
-            </div>
-            <input type='range' min='-200' max='200' defaultValue='0' className='range-slider' onChange={handleTranslateYChange} />
-          </li>
-        </ul>
-      </div>
-      <div className='result-container'>
-        <div className='preview'>
-          <div className='test-box test-box-2' style={{ transform: value }} />
+    <>
+      <Navbar classObject={{parent: 'menu', children: 'option'}} />
+      <div className='function-container'>
+        <div className='custom-container'>
+          <h3 className='header'>Transform options</h3>
+          <ul className='custom-list'>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Rotate</label>
+                <span className='value'>{rotate}&deg;</span>
+              </div>
+              <input type='range' min='0' max='360' defaultValue='0' className='range-slider' onChange={handleRotateChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Scale</label>
+                <span className='value'>{scale}</span>
+              </div>
+              <input type='range' min='0' max='2' step='0.1' defaultValue='1' className='range-slider' onChange={handleScaleChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Skew</label>
+                <span className='value'>{skew}&deg;</span>
+              </div>
+              <input type='range' min='-180' max='180' defaultValue='0' className='range-slider' onChange={handleSkewChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Translate X</label>
+                <span className='value'>{translateX}px</span>
+              </div>
+              <input type='range' min='-200' max='200' defaultValue='0' className='range-slider' onChange={handleTranslateXChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Translate Y</label>
+                <span className='value'>{translateY}px</span>
+              </div>
+              <input type='range' min='-200' max='200' defaultValue='0' className='range-slider' onChange={handleTranslateYChange} />
+            </li>
+          </ul>
         </div>
-        <div className='output'>
-          <p className='text' ref={outputText}>
-              transform:{value};<br />
-              -webkit-transform:{value};<br />
-              -moz-transform:{value};<br />
-          </p>
-          <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+        <div className='result-container'>
+          <div className='preview'>
+            <div className='test-box test-box-2' style={{ transform: value }} />
+          </div>
+          <div className='output'>
+            <p className='text' ref={outputText}>
+                transform:{value};<br />
+                -webkit-transform:{value};<br />
+                -moz-transform:{value};<br />
+            </p>
+            <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

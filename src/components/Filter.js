@@ -1,7 +1,8 @@
 import {useRef, useState} from 'react';
-import '../styles/general.scss';
+import Navbar from "./Navbar";
 import {hexToRgb, rgbToHex} from "./color";
 import landscape from '../img/landscape.jpg';
+import '../styles/general.scss';
 
 const Filter = () => {
   const [grayscale, setGrayscale] = useState('0');
@@ -125,133 +126,136 @@ const Filter = () => {
   const value = createValue();
 
   return (
-    <div className='function-container'>
-      <div className='custom-container'>
-        <h3 className='header'>Filter options</h3>
-        <ul className='custom-list'>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Grayscale</label>
-              <span className='value'>{grayscale}%</span>
-            </div>
-            <input type='range' min='0' max='100' defaultValue='0' className='range-slider' onChange={handleGrayscaleChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Sepia</label>
-              <span className='value'>{sepia}%</span>
-            </div>
-            <input type='range' min='0' max='100' defaultValue='0' className='range-slider' onChange={handleSepiaChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Blur</label>
-              <span className='value'>{blur}px</span>
-            </div>
-            <input type='range' min='0' max='10' defaultValue='0' className='range-slider' onChange={handleBlurChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Brightness</label>
-              <span className='value'>{brightness}%</span>
-            </div>
-            <input type='range' min='0' max='200' defaultValue='100' className='range-slider' onChange={handleBrightnessChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Hue rotate</label>
-              <span className='value'>{hueRotate}&deg;</span>
-            </div>
-            <input type='range' min='0' max='360' defaultValue='0' className='range-slider' onChange={handleHueRotateChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Saturate</label>
-              <span className='value'>{saturate}%</span>
-            </div>
-            <input type='range' min='0' max='1000' defaultValue='100' className='range-slider' onChange={handleSaturateChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Opacity</label>
-              <span className='value'>{opacity}%</span>
-            </div>
-            <input type='range' min='0' max='100' defaultValue='100' className='range-slider' onChange={handleOpacityChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Contrast</label>
-              <span className='value'>{contrast}%</span>
-            </div>
-            <input type='range' min='0' max='1000' defaultValue='100' className='range-slider' onChange={handleContrastChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Invert</label>
-              <span className='value'>{invert}%</span>
-            </div>
-            <input type='range' min='0' max='100' defaultValue='0' className='range-slider' onChange={handleInvertChange} />
-          </li>
-          <li className='custom-item'>
-            <h4 className='special-header'>Drop shadow</h4>
-            <ul className='special-container'>
-              <li className='special-item item-inline'>
-                <div className='meta'>
-                  <label>Include drop shadow</label>
-                </div>
-                <label className='switch-slider'>
-                  <input type='checkbox' onChange={handleDropShadowChange} className='checkbox'/>
-                  <span className='slider' />
-                </label>
-              </li>
-              <li className='special-item item-inline'>
-                <div className='meta'>
-                  <label>Shadow color</label>
-                </div>
-                <div className='color-picker'>
-                  <input type='text' className='color-text' ref={colorText} defaultValue='rgb(0, 0, 0)' onChange={handleColorTextChange} />
-                  <input type='color' className='color-chooser' value={rgbToHex(shadowColor.r, shadowColor.g, shadowColor.b)} onChange={handleColorChooserChange} />
-                </div>
-              </li>
-              <li className='special-item'>
-                <div className='meta'>
-                  <label>Horizontal shadow length</label>
-                  <span className='value'>{horizontalLength}px</span>
-                </div>
-                <input type='range' min='-200' max='200' defaultValue='10' className='range-slider' onChange={handleHorizontalLengthChange} />
-              </li>
-              <li className='special-item'>
-                <div className='meta'>
-                  <label>Vertical shadow length</label>
-                  <span className='value'>{verticalLength}px</span>
-                </div>
-                <input type='range' min='-200' max='200' defaultValue='10' className='range-slider' onChange={handleVerticalLengthChange} />
-              </li>
-              <li className='special-item'>
-                <div className='meta'>
-                  <label>Blur radius</label>
-                  <span className='value'>{blurRadius}px</span>
-                </div>
-                <input type='range' min='0' max='400' defaultValue='5' className='range-slider' onChange={handleBlurRadiusChange} />
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div className='result-container'>
-        <div className='preview'>
-          <img src={landscape} width='400' alt='Landscape' style={{ filter: value }} />
+    <>
+      <Navbar classObject={{parent: 'menu', children: 'option'}} />
+      <div className='function-container'>
+        <div className='custom-container'>
+          <h3 className='header'>Filter options</h3>
+          <ul className='custom-list'>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Grayscale</label>
+                <span className='value'>{grayscale}%</span>
+              </div>
+              <input type='range' min='0' max='100' defaultValue='0' className='range-slider' onChange={handleGrayscaleChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Sepia</label>
+                <span className='value'>{sepia}%</span>
+              </div>
+              <input type='range' min='0' max='100' defaultValue='0' className='range-slider' onChange={handleSepiaChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Blur</label>
+                <span className='value'>{blur}px</span>
+              </div>
+              <input type='range' min='0' max='10' defaultValue='0' className='range-slider' onChange={handleBlurChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Brightness</label>
+                <span className='value'>{brightness}%</span>
+              </div>
+              <input type='range' min='0' max='200' defaultValue='100' className='range-slider' onChange={handleBrightnessChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Hue rotate</label>
+                <span className='value'>{hueRotate}&deg;</span>
+              </div>
+              <input type='range' min='0' max='360' defaultValue='0' className='range-slider' onChange={handleHueRotateChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Saturate</label>
+                <span className='value'>{saturate}%</span>
+              </div>
+              <input type='range' min='0' max='1000' defaultValue='100' className='range-slider' onChange={handleSaturateChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Opacity</label>
+                <span className='value'>{opacity}%</span>
+              </div>
+              <input type='range' min='0' max='100' defaultValue='100' className='range-slider' onChange={handleOpacityChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Contrast</label>
+                <span className='value'>{contrast}%</span>
+              </div>
+              <input type='range' min='0' max='1000' defaultValue='100' className='range-slider' onChange={handleContrastChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Invert</label>
+                <span className='value'>{invert}%</span>
+              </div>
+              <input type='range' min='0' max='100' defaultValue='0' className='range-slider' onChange={handleInvertChange} />
+            </li>
+            <li className='custom-item'>
+              <h4 className='special-header'>Drop shadow</h4>
+              <ul className='special-container'>
+                <li className='special-item item-inline'>
+                  <div className='meta'>
+                    <label>Include drop shadow</label>
+                  </div>
+                  <label className='switch-slider'>
+                    <input type='checkbox' onChange={handleDropShadowChange} className='checkbox'/>
+                    <span className='slider' />
+                  </label>
+                </li>
+                <li className='special-item item-inline'>
+                  <div className='meta'>
+                    <label>Shadow color</label>
+                  </div>
+                  <div className='color-picker'>
+                    <input type='text' className='color-text' ref={colorText} defaultValue='rgb(0, 0, 0)' onChange={handleColorTextChange} />
+                    <input type='color' className='color-chooser' value={rgbToHex(shadowColor.r, shadowColor.g, shadowColor.b)} onChange={handleColorChooserChange} />
+                  </div>
+                </li>
+                <li className='special-item'>
+                  <div className='meta'>
+                    <label>Horizontal shadow length</label>
+                    <span className='value'>{horizontalLength}px</span>
+                  </div>
+                  <input type='range' min='-200' max='200' defaultValue='10' className='range-slider' onChange={handleHorizontalLengthChange} />
+                </li>
+                <li className='special-item'>
+                  <div className='meta'>
+                    <label>Vertical shadow length</label>
+                    <span className='value'>{verticalLength}px</span>
+                  </div>
+                  <input type='range' min='-200' max='200' defaultValue='10' className='range-slider' onChange={handleVerticalLengthChange} />
+                </li>
+                <li className='special-item'>
+                  <div className='meta'>
+                    <label>Blur radius</label>
+                    <span className='value'>{blurRadius}px</span>
+                  </div>
+                  <input type='range' min='0' max='400' defaultValue='5' className='range-slider' onChange={handleBlurRadiusChange} />
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-        <div className='output'>
-          <p className='text' ref={outputText}>
-            filter:{value};<br />
-            -webkit-filter:{value};<br />
-            -moz-filter:{value};<br />
-          </p>
-          <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+        <div className='result-container'>
+          <div className='preview'>
+            <img src={landscape} width='400' alt='Landscape' style={{ filter: value }} />
+          </div>
+          <div className='output'>
+            <p className='text' ref={outputText}>
+              filter:{value};<br />
+              -webkit-filter:{value};<br />
+              -moz-filter:{value};<br />
+            </p>
+            <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 };
 

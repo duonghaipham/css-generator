@@ -1,4 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
+import Navbar from './Navbar';
+import '../styles/general.scss';
 
 const Gradient = () => {
   const [orientation, setOrientation] = useState('linear');
@@ -106,83 +108,86 @@ const Gradient = () => {
   const value = createValue();
   
   return (
-    <div className='function-container'>
-      <div className='custom-container'>
-        <h3 className='header'>Text shadow options</h3>
-        <ul className='custom-list'>
-          <li className='custom-item item-inline'>
-            <div className='meta'>
-              <label>Orientation</label>
-            </div>
-            <select className='combobox' onChange={handleOrientationChange}>
-              {listOrientations.map(orientation => <option>{orientation}</option>)}
-            </select>
-          </li>
-          {(orientation.includes('linear')) ?
-            <li className='custom-item'>
+    <>
+      <Navbar classObject={{parent: 'menu', children: 'option'}} />
+      <div className='function-container'>
+        <div className='custom-container'>
+          <h3 className='header'>Text shadow options</h3>
+          <ul className='custom-list'>
+            <li className='custom-item item-inline'>
               <div className='meta'>
-                <label>Degree</label>
-                <span className='value'>{degree}&deg;</span>
+                <label>Orientation</label>
               </div>
-              <input type='range' min='0' max='360' defaultValue='0' className='range-slider' onChange={handleDegreeChange} />
+              <select className='combobox' onChange={handleOrientationChange}>
+                {listOrientations.map(orientation => <option>{orientation}</option>)}
+              </select>
             </li>
-            :
-            <>
-              <li className='custom-item item-inline'>
+            {(orientation.includes('linear')) ?
+              <li className='custom-item'>
                 <div className='meta'>
-                  <label>Size</label>
+                  <label>Degree</label>
+                  <span className='value'>{degree}&deg;</span>
                 </div>
-                <select className='combobox' onChange={handleSizeChange}>
-                  {listSizes.map(currentSize => <option>{currentSize}</option>)}
-                </select>
+                <input type='range' min='0' max='360' defaultValue='0' className='range-slider' onChange={handleDegreeChange} />
               </li>
-              <li className='custom-item item-inline'>
-                <div className='meta'>
-                  <label>Position</label>
-                </div>
-                <select className='combobox' defaultValue='center center' onChange={handlePositionChange}>
-                  {listPositions.map(position => <option>{position}</option>)}
-                </select>
-              </li>
-            </>}
-          {colors.map((color, index) =>
-              <li className='custom-item item-inline'>
-                <div className='meta'>
-                  <label>{(index === 0) ? 'Start color' : (index === colors.length - 1) ? 'End color' : 'Stop color'}</label>
-                  {(index !== 0 && index !== colors.length - 1) ? <span className='remove' onClick={() => handleRemoveColorClick(index)}>&#10006;</span> : ''}
-                </div>
-                <div className='color-value'>
-                  <div className='color-picker'>
-                    <input type='text' className='color-text' ref={element => colorsText.current[index] = element}
-                           defaultValue={color.col} onChange={event => handleColorTextChange(event, index)} />
-                    <input type='color' className='color-chooser' value={color.col}
-                           onChange={event => handleColorChooserChange(event, index)} />
+              :
+              <>
+                <li className='custom-item item-inline'>
+                  <div className='meta'>
+                    <label>Size</label>
                   </div>
-                  <input type='text' className='color-percentage' ref={element => percentagesText.current[index] = element}
-                         defaultValue={color.per} onChange={event => handleColorPercentageChange(event, index)} />
-                </div>
-              </li>
-          )}
-          <li className='custom-item item-inline'>
-            <button type='button' onClick={handleAddColorClick}>Add stop color</button>
-          </li>
-        </ul>
-      </div>
-      <div className='result-container'>
-        <div className='preview'>
-          <div className='test-box-1' style={{ background: value }} />
+                  <select className='combobox' onChange={handleSizeChange}>
+                    {listSizes.map(currentSize => <option>{currentSize}</option>)}
+                  </select>
+                </li>
+                <li className='custom-item item-inline'>
+                  <div className='meta'>
+                    <label>Position</label>
+                  </div>
+                  <select className='combobox' defaultValue='center center' onChange={handlePositionChange}>
+                    {listPositions.map(position => <option>{position}</option>)}
+                  </select>
+                </li>
+              </>}
+            {colors.map((color, index) =>
+                <li className='custom-item item-inline'>
+                  <div className='meta'>
+                    <label>{(index === 0) ? 'Start color' : (index === colors.length - 1) ? 'End color' : 'Stop color'}</label>
+                    {(index !== 0 && index !== colors.length - 1) ? <span className='remove' onClick={() => handleRemoveColorClick(index)}>&#10006;</span> : ''}
+                  </div>
+                  <div className='color-value'>
+                    <div className='color-picker'>
+                      <input type='text' className='color-text' ref={element => colorsText.current[index] = element}
+                             defaultValue={color.col} onChange={event => handleColorTextChange(event, index)} />
+                      <input type='color' className='color-chooser' value={color.col}
+                             onChange={event => handleColorChooserChange(event, index)} />
+                    </div>
+                    <input type='text' className='color-percentage' ref={element => percentagesText.current[index] = element}
+                           defaultValue={color.per} onChange={event => handleColorPercentageChange(event, index)} />
+                  </div>
+                </li>
+            )}
+            <li className='custom-item item-inline'>
+              <button type='button' onClick={handleAddColorClick}>Add stop color</button>
+            </li>
+          </ul>
         </div>
-        <div className='output'>
-          <p className='text' ref={outputText}>
-            background: {colors[0].col};<br />
-            background: {value};<br />
-            background: -webkit-{value};<br />
-            background: -moz-{value};<br />
-          </p>
-          <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+        <div className='result-container'>
+          <div className='preview'>
+            <div className='test-box-1' style={{ background: value }} />
+          </div>
+          <div className='output'>
+            <p className='text' ref={outputText}>
+              background: {colors[0].col};<br />
+              background: {value};<br />
+              background: -webkit-{value};<br />
+              background: -moz-{value};<br />
+            </p>
+            <button className='copy' onClick={handleCopyClick}>{(copied) ? 'Copied' : 'Copy'}</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

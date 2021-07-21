@@ -1,5 +1,6 @@
-import {hexToRgb, rgbToHex} from './color';
 import {useRef, useState} from 'react';
+import Navbar from "./Navbar";
+import {hexToRgb, rgbToHex} from './color';
 
 const ColorConverter = () => {
   const [red, setRed] = useState('45');
@@ -52,67 +53,70 @@ const ColorConverter = () => {
   const hexValue = rgbToHex(parseInt(red), parseInt(green), parseInt(blue));
 
   return (
-    <div className="function-container">
-      <div className="custom-container">
-        <h3 className="header">RGBA or hex options</h3>
-        <ul className="custom-list">
-          <li className="custom-item">
-            <div className="meta">
-              <label>Red</label>
-              <span className="value">{red}</span>
-            </div>
-            <input type='range' min='0' max='255' value={red} className='range-slider' onChange={handleRedChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Green</label>
-              <span className='value'>{green}</span>
-            </div>
-            <input type='range' min='0' max='255' value={green} className='range-slider' onChange={handleGreenChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Blue</label>
-              <span className='value'>{blue}</span>
-            </div>
-            <input type='range' min='0' max='255' value={blue} className='range-slider' onChange={handleBlueChange} />
-          </li>
-          <li className='custom-item'>
-            <div className='meta'>
-              <label>Opacity</label>
-              <span className='value'>{opacity}</span>
-            </div>
-            <input type='range' min='0' max='1' step='0.01' defaultValue='0.5' className='range-slider' onChange={handleOpacityChange} />
-          </li>
-          <li className='custom-item item-inline'>
-            <div className='meta'>
-              <label>Color</label>
-            </div>
-            <input type='text' className='text-in' defaultValue='#2dc36a' ref={hexInput} onChange={handleHexChange} />
-          </li>
-        </ul>
-      </div>
-      <div className='result-container'>
-        <div className='preview preview-group'>
-          <div className='test-bar-1' style={{ backgroundColor: hexValue }} />
-          <div className='test-bar-2' style={{ backgroundColor: `rgba(${parseInt(red)}, ${parseInt(green)}, ${parseInt(blue)}, ${opacity})` }} />
+    <>
+      <Navbar classObject={{parent: 'menu', children: 'option'}} />
+      <div className="function-container">
+        <div className="custom-container">
+          <h3 className="header">RGBA or hex options</h3>
+          <ul className="custom-list">
+            <li className="custom-item">
+              <div className="meta">
+                <label>Red</label>
+                <span className="value">{red}</span>
+              </div>
+              <input type='range' min='0' max='255' value={red} className='range-slider' onChange={handleRedChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Green</label>
+                <span className='value'>{green}</span>
+              </div>
+              <input type='range' min='0' max='255' value={green} className='range-slider' onChange={handleGreenChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Blue</label>
+                <span className='value'>{blue}</span>
+              </div>
+              <input type='range' min='0' max='255' value={blue} className='range-slider' onChange={handleBlueChange} />
+            </li>
+            <li className='custom-item'>
+              <div className='meta'>
+                <label>Opacity</label>
+                <span className='value'>{opacity}</span>
+              </div>
+              <input type='range' min='0' max='1' step='0.01' defaultValue='0.5' className='range-slider' onChange={handleOpacityChange} />
+            </li>
+            <li className='custom-item item-inline'>
+              <div className='meta'>
+                <label>Color</label>
+              </div>
+              <input type='text' className='text-in' defaultValue='#2dc36a' ref={hexInput} onChange={handleHexChange} />
+            </li>
+          </ul>
         </div>
-        <div className='output output-group'>
-          <div className='group'>
-            <p className='text' ref={rgb}>rgb({red}, {green}, {blue})</p>
-            <button className='copy' onClick={event => handleCopy(event, rgb)}>Copy</button>
+        <div className='result-container'>
+          <div className='preview preview-group'>
+            <div className='test-bar-1' style={{ backgroundColor: hexValue }} />
+            <div className='test-bar-2' style={{ backgroundColor: `rgba(${parseInt(red)}, ${parseInt(green)}, ${parseInt(blue)}, ${opacity})` }} />
           </div>
-          <div className='group'>
-            <p className='text' ref={rgba}>rgba({red}, {green}, {blue}, {opacity})</p>
-            <button className='copy' onClick={event => handleCopy(event, rgba)}>Copy</button>
-          </div>
-          <div className='group'>
-            <p className='text' ref={hex}>{hexValue}</p>
-            <button className='copy' onClick={event => handleCopy(event, hex)}>Copy</button>
+          <div className='output output-group'>
+            <div className='group'>
+              <p className='text' ref={rgb}>rgb({red}, {green}, {blue})</p>
+              <button className='copy' onClick={event => handleCopy(event, rgb)}>Copy</button>
+            </div>
+            <div className='group'>
+              <p className='text' ref={rgba}>rgba({red}, {green}, {blue}, {opacity})</p>
+              <button className='copy' onClick={event => handleCopy(event, rgba)}>Copy</button>
+            </div>
+            <div className='group'>
+              <p className='text' ref={hex}>{hexValue}</p>
+              <button className='copy' onClick={event => handleCopy(event, hex)}>Copy</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

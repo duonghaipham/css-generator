@@ -115,6 +115,28 @@
   outline: none;
 }
 
+.active-menu {
+  font-weight: 600;
+}
+
+.menu {
+  display: flex;
+  flex-flow: row wrap;
+  width: 90%;
+  margin: 0 auto 1rem;
+
+  .option {
+    margin-right: 0.75rem;
+    color: #127b3d;
+    font-size: 0.85rem;
+    text-decoration: none;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
 .function-container {
   display: flex;
   justify-content: space-between;
@@ -137,16 +159,16 @@
       padding: 0.75rem;
       list-style-type: none;
 
-      .item-inline {
+      .item-inline {  // for color picker, combobox, button, input text
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
 
-        .color-value {
+        .color-value {  // in gradient
           display: flex;
 
-          .color-percentage {
+          .color-percentage { // input percentage
             width: 60px;
             margin-left: 5px;
             border: 1px #ccc solid;
@@ -169,7 +191,7 @@
         }
       }
 
-      .custom-item {
+      .custom-item {  // general item
         $border-cursor: 1px #ccc solid;
         border-top: $border-cursor;
         border-left: $border-cursor;
@@ -215,7 +237,7 @@
           }
         }
 
-        .text-in {
+        .text-in {  // color input in color converter
           border: 1px solid #ccc;
           padding: 7px 10px;
           font-size: 16px;
